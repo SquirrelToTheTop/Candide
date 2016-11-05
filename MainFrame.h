@@ -8,6 +8,8 @@
 #include <QStatusBar>
 #include <QAction>
 
+#include "Candidature.h"
+
 class MainFrame : public QMainWindow{
 
   Q_OBJECT
@@ -20,6 +22,7 @@ class MainFrame : public QMainWindow{
     void delApplication();
     void loadApplicationData();
     void saveApplicationData();      
+    void getNewCandidatureData();
 
  private:
 
@@ -29,6 +32,9 @@ class MainFrame : public QMainWindow{
   /* Menus */
   QMenu *menuCand, *menuData;
   QAction *addCand, *delCand, *loadData, *saveData;
+
+  /* List des candidatures */
+  QList<Candidature *> all_candidatures;
 
   /* windows size */
   static const int width_mf = 500;
