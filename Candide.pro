@@ -1,6 +1,6 @@
 QT += widgets
 
-HEADERS = MainFrame.h
+HEADERS = MainFrame.h Candidature.h
 
-SOURCES += main.cpp MainFrame.cpp
+SOURCES += main.cpp MainFrame.cpp Candidature.cpp
     

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <QApplication>
 #include "MainFrame.h"
+#include "Candidature.h"
 
 MainFrame::MainFrame() : QMainWindow(){
 
@@ -35,6 +36,8 @@ MainFrame::MainFrame() : QMainWindow(){
 void MainFrame::newApplication(){
   std::cout << "Request for new an application..." << std::endl;
   statusBar()->showMessage(tr("Adding new candidature"));
+
+  Candidature cand1;
 }
 
 void MainFrame::delApplication(){

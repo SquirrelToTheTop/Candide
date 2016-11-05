@@ -46,9 +46,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = main.cpp \
-		MainFrame.cpp moc_MainFrame.cpp
+		MainFrame.cpp \
+		Candidature.cpp moc_MainFrame.cpp
 OBJECTS       = main.o \
 		MainFrame.o \
+		Candidature.o \
 		moc_MainFrame.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
@@ -274,7 +276,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/Candide1.0.0 || mkdir -p .tmp/Candide1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/Candide1.0.0/ && $(COPY_FILE) --parents MainFrame.h .tmp/Candide1.0.0/ && $(COPY_FILE) --parents main.cpp MainFrame.cpp .tmp/Candide1.0.0/ && (cd `dirname .tmp/Candide1.0.0` && $(TAR) Candide1.0.0.tar Candide1.0.0 && $(COMPRESS) Candide1.0.0.tar) && $(MOVE) `dirname .tmp/Candide1.0.0`/Candide1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Candide1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/Candide1.0.0/ && $(COPY_FILE) --parents MainFrame.h Candidature.h .tmp/Candide1.0.0/ && $(COPY_FILE) --parents main.cpp MainFrame.cpp Candidature.cpp .tmp/Candide1.0.0/ && (cd `dirname .tmp/Candide1.0.0` && $(TAR) Candide1.0.0.tar Candide1.0.0 && $(COMPRESS) Candide1.0.0.tar) && $(MOVE) `dirname .tmp/Candide1.0.0`/Candide1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Candide1.0.0
 
 
 clean:compiler_clean 
@@ -418,6 +420,8 @@ moc_MainFrame.cpp: /usr/include/qt5/QtWidgets/QWidget \
 		/usr/include/qt5/QtWidgets/qmenu.h \
 		/usr/include/qt5/QtWidgets/qaction.h \
 		/usr/include/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/qt5/QtWidgets/QStatusBar \
+		/usr/include/qt5/QtWidgets/qstatusbar.h \
 		/usr/include/qt5/QtWidgets/QAction \
 		MainFrame.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/x86_64-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainFrame.h -o moc_MainFrame.cpp
@@ -562,6 +566,8 @@ main.o: main.cpp /usr/include/qt5/QtWidgets/QApplication \
 		/usr/include/qt5/QtWidgets/qmenu.h \
 		/usr/include/qt5/QtWidgets/qaction.h \
 		/usr/include/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/qt5/QtWidgets/QStatusBar \
+		/usr/include/qt5/QtWidgets/qstatusbar.h \
 		/usr/include/qt5/QtWidgets/QAction
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -691,8 +697,57 @@ MainFrame.o: MainFrame.cpp /usr/include/qt5/QtWidgets/QApplication \
 		/usr/include/qt5/QtWidgets/qmenu.h \
 		/usr/include/qt5/QtWidgets/qaction.h \
 		/usr/include/qt5/QtWidgets/qactiongroup.h \
+		/usr/include/qt5/QtWidgets/QStatusBar \
+		/usr/include/qt5/QtWidgets/qstatusbar.h \
 		/usr/include/qt5/QtWidgets/QAction
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainFrame.o MainFrame.cpp
+
+Candidature.o: Candidature.cpp Candidature.h \
+		/usr/include/qt5/QtCore/QString \
+		/usr/include/qt5/QtCore/qstring.h \
+		/usr/include/qt5/QtCore/qchar.h \
+		/usr/include/qt5/QtCore/qglobal.h \
+		/usr/include/qt5/QtCore/qconfig.h \
+		/usr/include/qt5/QtCore/qfeatures.h \
+		/usr/include/qt5/QtCore/qsystemdetection.h \
+		/usr/include/qt5/QtCore/qprocessordetection.h \
+		/usr/include/qt5/QtCore/qcompilerdetection.h \
+		/usr/include/qt5/QtCore/qglobalstatic.h \
+		/usr/include/qt5/QtCore/qatomic.h \
+		/usr/include/qt5/QtCore/qbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/include/qt5/QtCore/qgenericatomic.h \
+		/usr/include/qt5/QtCore/qatomic_msvc.h \
+		/usr/include/qt5/QtCore/qatomic_integrity.h \
+		/usr/include/qt5/QtCore/qoldbasicatomic.h \
+		/usr/include/qt5/QtCore/qatomic_vxworks.h \
+		/usr/include/qt5/QtCore/qatomic_power.h \
+		/usr/include/qt5/QtCore/qatomic_alpha.h \
+		/usr/include/qt5/QtCore/qatomic_armv7.h \
+		/usr/include/qt5/QtCore/qatomic_armv6.h \
+		/usr/include/qt5/QtCore/qatomic_armv5.h \
+		/usr/include/qt5/QtCore/qatomic_bfin.h \
+		/usr/include/qt5/QtCore/qatomic_ia64.h \
+		/usr/include/qt5/QtCore/qatomic_mips.h \
+		/usr/include/qt5/QtCore/qatomic_s390.h \
+		/usr/include/qt5/QtCore/qatomic_sh4a.h \
+		/usr/include/qt5/QtCore/qatomic_sparc.h \
+		/usr/include/qt5/QtCore/qatomic_gcc.h \
+		/usr/include/qt5/QtCore/qatomic_x86.h \
+		/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		/usr/include/qt5/QtCore/qatomic_unix.h \
+		/usr/include/qt5/QtCore/qmutex.h \
+		/usr/include/qt5/QtCore/qlogging.h \
+		/usr/include/qt5/QtCore/qflags.h \
+		/usr/include/qt5/QtCore/qtypeinfo.h \
+		/usr/include/qt5/QtCore/qtypetraits.h \
+		/usr/include/qt5/QtCore/qsysinfo.h \
+		/usr/include/qt5/QtCore/qbytearray.h \
+		/usr/include/qt5/QtCore/qrefcount.h \
+		/usr/include/qt5/QtCore/qnamespace.h \
+		/usr/include/qt5/QtCore/qarraydata.h \
+		/usr/include/qt5/QtCore/qstringbuilder.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Candidature.o Candidature.cpp
 
 moc_MainFrame.o: moc_MainFrame.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainFrame.o moc_MainFrame.cpp
