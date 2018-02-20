@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <QApplication>
 #include <QWidget>
 #include <QTextEdit>
@@ -211,6 +212,39 @@ void MainFrame::loadApplicationData(){
 }
 
 void MainFrame::saveApplicationData(){
+
+  int i, n_candide;
+
+  std::ofstream output_file;
+
   std::cout << "Request for saving application data..." << std::endl;
   statusBar()->showMessage(tr("Saving candidature"));
+  
+  n_candide = all_candidatures.size();
+
+  /* open output file 
+   *
+   * FORMAT :
+   *
+   * number_of_candidature
+   * 
+   * Company name <QString>
+   * date_of_application <QString>
+   * answer <bool>
+   * blablah <QString>
+   */
+  char outfile_name[20] = {'candide.ature'};
+  const char *p = (char *) &outfile_name[0];
+  output_file.open("candide.ature");
+
+  output_file << n_candide;
+  for( i=0; i<n_candide; i++){
+    std::cout << "Candidature num : " << i+1;
+    std::string tmp_utf8;
+    tmp_utf8 = (all_candidatures[i]->get_company_name()).toStdString();
+    
+    std::cout << tmp_utf8 << std::endl;
+    output_file << tmp_utf8;
+  }
+  output_file.close();
 }

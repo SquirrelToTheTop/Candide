@@ -282,7 +282,7 @@ dist:
 clean:compiler_clean 
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
-
+	-$(DEL_FILE) $(TARGET)
 
 ####### Sub-libraries
 
@@ -704,6 +704,8 @@ MainFrame.o: MainFrame.cpp /usr/include/qt5/QtWidgets/QApplication \
 		/usr/include/qt5/QtWidgets/QDialog \
 		/usr/include/qt5/QtWidgets/qdialog.h \
 		/usr/include/qt5/QtCore/QDebug \
+		/usr/include/qt5/QtWidgets/QDialogButtonBox \
+		/usr/include/qt5/QtWidgets/qdialogbuttonbox.h \
 		/usr/include/qt5/QtWidgets/QPushButton \
 		/usr/include/qt5/QtWidgets/qpushbutton.h \
 		/usr/include/qt5/QtWidgets/qabstractbutton.h \

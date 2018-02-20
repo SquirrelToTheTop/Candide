@@ -8,6 +8,8 @@ class Candidature {
  public:
   Candidature();
   ~Candidature();
+  QString get_company_name();
+  QString get_application_date();
 
  private:
   QString company;
